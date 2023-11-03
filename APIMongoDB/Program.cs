@@ -1,6 +1,11 @@
+using APIMongoDB.Configcurations;
+using APIMongoDB.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<DatabaseSetting>(builder.Configuration.GetSection(key: "MongoDatabase"));
+builder.Services.AddSingleton<EmployeesService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
